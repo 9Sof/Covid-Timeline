@@ -1,8 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import firebase from './firebase';
+const App = () => {
+  firebase.firestore()
+    .collection('patients')
+    .doc('Ox6UI0L6avYRL863cKt9')
+    .onSnapshot(snapshot => { console.log(snapshot.data()) })
 
-function App() {
+
   return (
     <div className="App">
       <header className="App-header">
