@@ -1,13 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import firebase from './firebase';
-const App = () => {
-  firebase.firestore()
-    .collection('patients')
-    .doc('Ox6UI0L6avYRL863cKt9')
-    .onSnapshot(snapshot => { console.log(snapshot.data()) })
+import React, { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { useStore } from "./store/patientsStore";
 
+const App = () => {
+  const { patients, getPatients } = useStore();
+  useEffect(() => {
+    getPatients();
+  }, []);
+  console.log(patients);
 
   return (
     <div className="App">
@@ -27,6 +28,6 @@ const App = () => {
       </header>
     </div>
   );
-}
+};
 
 export default App;
